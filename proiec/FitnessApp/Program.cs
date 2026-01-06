@@ -61,3 +61,41 @@ public class FitnessClass
     public List<string> ReservedUsers { get; set; } = new();
 }
 
+public class Reservation
+{
+    public string ClassName {get; set;}
+}
+
+static class DataService
+{
+    public static void Save<T>(string file, T data)
+    {
+        try
+        {
+            File.WriteAllText(file,
+                JsonSerializer.Serialize(data, new JsonSerializerOptions
+                { WriteIndented = true }));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Eroare salvare: " + e.Message);
+        }
+    }
+
+    public static T Load<T>(string file) where T : new()
+    {
+        try
+        {
+            if (!File.Exists(file))
+                return new T();
+
+            return JsonSerializer.Deserialize<T>(
+                File.ReadAllText(file)) ?? new T();
+        }
+        catch
+        {
+            Console.WriteLine("Fișier invalid. Se creează date noi.");
+            return new T();
+        }
+    }
+}
