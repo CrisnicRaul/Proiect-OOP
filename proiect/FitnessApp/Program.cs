@@ -155,7 +155,7 @@ public class Program
                 Console.ReadKey();
                 break;
             case "4":
-                ViewStastistics();
+                ViewStatistics();
                 Console.ReadKey();
                 break;
             case "5":
@@ -926,8 +926,8 @@ public class Admin : User
 
 public class Client : User
 {
-    public List<Subscription> Subscriptions { get; set; } = [];
-    public List<Reservation> Reservations { get; set; } = [];
+    public List<Subscription> Subscriptions { get; set; } = new List<Subscription>();
+    public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 
     public Client(string username, string password)
         : base(username, password) { }
@@ -936,7 +936,7 @@ public class Client : User
 public class Gym
 {
     public string Name{get; set;}
-    public List<Zone> Zones {get; set;} = [];
+    public List<Zone> Zones {get; set;} = new List<Zone>();
 }
 
 public class Zone
@@ -961,7 +961,7 @@ public class FitnessClass
     public string Name { get; set; }
     public string Trainer { get; set; }
     public int Capacity { get; set; }
-    public HashSet<string> ReservedUsers { get; set; } = [];
+    public HashSet<string> ReservedUsers { get; set; } = new HashSet<string>();
 }
 
 public class Reservation
@@ -1005,10 +1005,10 @@ static class DataService
 
 class DataStorage
 {
-    public List<Admin> Admins { get; set; } = [];
-    public List<Client> Clients { get; set; } = [];
-    public List<Gym> Gyms { get; set; } = [];
-    public List<FitnessClass> Classes { get; set; } = [];
-    public List<Subscription> SubscriptionTypes { get; set; } = [];
+    public List<Admin> Admins { get; set; } = new List<Admin>();
+    public List<Client> Clients { get; set; } = new List<Client>();
+    public List<Gym> Gyms { get; set; } = new List<Gym>();
+    public List<FitnessClass> Classes { get; set; } = new List<FitnessClass>();
+    public List<Subscription> SubscriptionTypes { get; set; } = new List<Subscription>();
 
 }
